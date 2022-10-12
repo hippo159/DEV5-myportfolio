@@ -53,10 +53,10 @@ export default class Bingo {
     // let card = new Card(this.cards[i]);
     // render the card
     // card.render();
-    for (const card of this.cards) {
-      let cardObject = new Card(card);
-      console.log(cardObject);
-     // cardObject.render();
+    for (const cards of this.cards) {
+      let card = new Card(cards);
+      console.log(card);
+      //card.render();
     }
   }
 
