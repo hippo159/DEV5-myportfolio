@@ -70,14 +70,14 @@ export default class Bingo {
     // 🔥🔥🔥 TODO 6
     // count all cards that are marked as done (select done items and count them with .length)
     let cardsDone = document.querySelectorAll(".bingo__card--done").length;
-    console.log(cardsDone, typeof cardsDone);
+    
     
      if (cardsDone === 5) {
     // show the animated gif to the winner
       console.log("winner");
       document.querySelector(".bingo__overlay").style.display = "block";
      }else{
-       console.log("no winner");
+       
      }
   }
 
@@ -86,8 +86,11 @@ export default class Bingo {
     // save the cards that are done to localstorage
     // you can simply save an array with the card numbers like [1, 6, 8]
     // https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
-    let cardsWon = [];
+    let cardsWon = Array.from(document.querySelectorAll(".bingo__card--done"));
+    console.log(cardsWon);
     console.log("Saving bingo to localstorage");
+    // loop over all the cards and check if they are marked as done
+    
     // let cards = document.querySelectorAll(".bingo__card--done");
 
     // if there are not done cards, remove localstorage
