@@ -15,7 +15,7 @@ export default class Card {
       target.classList.remove("bingo__card--done");
     } else {
     target.className = "bingo__card bingo__card--done";
-    }console.log(target);
+    }//console.log(target);
     // hint: use class .bingo__card--done
   }
 
@@ -31,7 +31,7 @@ export default class Card {
       card.dataset.number = counter;
       card.innerHTML = this.title;
       document.querySelector(".bingo__board").appendChild(card);
-      console.log(card);
+      //console.log(card);
     
     // 🔥🔥🔥 TODO3: build the HTML element and append it to the DOM
     // 
