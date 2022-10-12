@@ -4,7 +4,7 @@ export default class Card {
   constructor(title) {
     // the constructor is called when you create a new instance of the class
     this.title = title;
-    console.log(`Created a new card with title: ${title}`);
+    //console.log(`Created a new card with title: ${title}`);
   }
 
   markDone(target) {
@@ -44,7 +44,7 @@ export default class Card {
       
       this.markDone(e.target);
       Bingo.checkWinner();
-      Bingo.save();
+      //Bingo.save();
       // call checkWinner() on the Bingo class
       // try to call the save() method on the Bingo class
     });

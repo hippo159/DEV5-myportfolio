@@ -69,11 +69,16 @@ export default class Bingo {
 
     // 🔥🔥🔥 TODO 6
     // count all cards that are marked as done (select done items and count them with .length)
-    /// let cardsDone = ;
-    // if (cardsDone.length === 5) {
+    let cardsDone = document.querySelectorAll(".bingo__card--done").length;
+    console.log(cardsDone, typeof cardsDone);
+    
+     if (cardsDone === 5) {
     // show the animated gif to the winner
-    // document.querySelector(".bingo__overlay").style.display = "block";
-    // }
+      console.log("winner");
+      document.querySelector(".bingo__overlay").style.display = "block";
+     }else{
+       console.log("no winner");
+     }
   }
 
   static save() {
