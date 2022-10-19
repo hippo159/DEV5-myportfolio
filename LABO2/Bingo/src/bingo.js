@@ -91,18 +91,22 @@ export default class Bingo {
     let cardsWon = Array.from(document.querySelectorAll(".bingo__card--done")).map(
       card => card.dataset.number
     );
-    console.log(cardsWon);
+    
 
     //save cardsWon to localstorage
+    localStorage.setItem("cards", JSON.stringify(cardsWon));
+    console.log(localStorage);
     console.log("Saving bingo to localstorage");
     // loop over all the cards and check if they are marked as done
     
      let cards = document.querySelectorAll(".bingo__card--done");
     
     // if there are not done cards, remove localstorage
-    // if (cards.length === 0) {
+     if (cards.length === 0) {
     // remove localstorage
-    // }
+      localStorage.removeItem("cards"); 
+      console.log("removing localstorage");
+    }
 
     // save a selection like [1, 7, 8] to localstorage item "bingo"
     // you might want to check out how JSON.stringify() works
