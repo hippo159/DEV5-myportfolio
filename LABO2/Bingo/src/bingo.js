@@ -1,7 +1,7 @@
 import Card from "./card.js";
 
 // 🔥🔥🔥 TODO 1 - make sure to export the class, if you want to be able to import the class elsewhere
-class Bingo {
+export default class Bingo {
   constructor() {
     // the constructor is called when you create a new instance of the class
     console.log("Welcome to Bingo! 🎉");
@@ -53,6 +53,14 @@ class Bingo {
     // let card = new Card(this.cards[i]);
     // render the card
     // card.render();
+    let counter = 1;
+    for (const cards of this.cards) {
+      let card = new Card(cards);
+      
+      //console.log(card);
+      card.render(counter);
+     counter++;
+    }
   }
 
   static checkWinner() {
@@ -61,11 +69,16 @@ class Bingo {
 
     // 🔥🔥🔥 TODO 6
     // count all cards that are marked as done (select done items and count them with .length)
-    /// let cardsDone = ;
-    // if (cardsDone.length === 5) {
+    let cardsDone = document.querySelectorAll(".bingo__card--done").length;
+    
+    
+     if (cardsDone === 5) {
     // show the animated gif to the winner
-    // document.querySelector(".bingo__overlay").style.display = "block";
-    // }
+      console.log("winner");
+      document.querySelector(".bingo__overlay").style.display = "block";
+     }else{
+       
+     }
   }
 
   static save() {
@@ -73,14 +86,27 @@ class Bingo {
     // save the cards that are done to localstorage
     // you can simply save an array with the card numbers like [1, 6, 8]
     // https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
-    let cardsWon = [];
-    console.log("Saving bingo to localstorage");
-    // let cards = document.querySelectorAll(".bingo__card--done");
+    //let cards = Array.from(document.querySelectorAll(".bingo__card--done"));
+    //create array with card dataset numbers
+    let cardsWon = Array.from(document.querySelectorAll(".bingo__card--done")).map(
+      card => card.dataset.number
+    );
+    
 
+    //save cardsWon to localstorage
+    localStorage.setItem("cards", JSON.stringify(cardsWon));
+    console.log(localStorage);
+    console.log("Saving bingo to localstorage");
+    // loop over all the cards and check if they are marked as done
+    
+     let cards = document.querySelectorAll(".bingo__card--done");
+    
     // if there are not done cards, remove localstorage
-    // if (cards.length === 0) {
+     if (cards.length === 0) {
     // remove localstorage
-    // }
+      localStorage.removeItem("cards"); 
+      console.log("removing localstorage");
+    }
 
     // save a selection like [1, 7, 8] to localstorage item "bingo"
     // you might want to check out how JSON.stringify() works
@@ -94,10 +120,14 @@ class Bingo {
     console.log("loading bingo selection from localstorage");
 
     // check if localstorage item exists
-    if (localStorage.getItem("bingo")) {
-      // let cardsWon = JSON.parse();
+    if (localStorage.getItem("cards")) {
+       let cardsWon = JSON.parse(localStorage.getItem("cards"));
+       console.log(cardsWon);
       // JSON.parse() will convert the string [1, 7, 8] back to an array which you can loop
       // loop over the numbers 1, 7, 8 and mark those cards as done by adding the right CSS class
+      for (const card of cardsWon) {
+        document.querySelector(`[data-number="${card}"]`).classList.add("bingo__card--done");
+      }
       // .bingo__card--done
     }
   }
