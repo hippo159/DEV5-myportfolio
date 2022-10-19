@@ -125,7 +125,9 @@ export default class Bingo {
        console.log(cardsWon);
       // JSON.parse() will convert the string [1, 7, 8] back to an array which you can loop
       // loop over the numbers 1, 7, 8 and mark those cards as done by adding the right CSS class
-       document.querySelector(`[data-number="1"]`).classList.add("bingo__card--done");
+      for (const card of cardsWon) {
+        document.querySelector(`[data-number="${card}"]`).classList.add("bingo__card--done");
+      }
       // .bingo__card--done
     }
   }
