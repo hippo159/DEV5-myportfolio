@@ -18,9 +18,9 @@ controls.dampingFactor = 0.05;
 
 
 
-const geometry = new THREE.BoxGeometry( 2, 0.8, 1 );
+const geometry = new THREE.BoxGeometry( 3, 0.3, 3 );
 //assign cube wood texture
-const texture = new THREE.TextureLoader().load( '/assets/wood.jpg' );
+const texture = new THREE.TextureLoader().load( '/assets/concrete.jpg' );
 const material = new THREE.MeshBasicMaterial( { map: texture } );
 const cube = new THREE.Mesh( geometry, material );
 scene.add( cube );
@@ -35,7 +35,7 @@ const planeGeometry = new THREE.CircleGeometry( 10, 16);
 const planeMaterial = new THREE.MeshBasicMaterial( { map: grass, side: THREE.DoubleSide } );
 const plane = new THREE.Mesh( planeGeometry, planeMaterial );
 plane.rotation.x = Math.PI / 2;
-plane.position.y = -0.4;
+plane.position.y = -0.15;
 scene.add( plane );
 
 
