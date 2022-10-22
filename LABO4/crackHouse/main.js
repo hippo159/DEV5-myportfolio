@@ -26,12 +26,12 @@ const cube = new THREE.Mesh( geometry, material );
 scene.add( cube );
 
 //add grass
-const grass = new THREE.TextureLoader().load( '/assets/grass.jpg' );
+const grass = new THREE.TextureLoader().load( '/assets/pavement.jpg' );
 grass.wrapS = THREE.RepeatWrapping;
 grass.wrapT = THREE.RepeatWrapping;
-grass.repeat.set( 40, 40 );
+grass.repeat.set( 12, 12 );
 //add floor plane
-const planeGeometry = new THREE.PlaneGeometry( 10, 10, 16 );
+const planeGeometry = new THREE.CircleGeometry( 10, 16);
 const planeMaterial = new THREE.MeshBasicMaterial( { map: grass, side: THREE.DoubleSide } );
 const plane = new THREE.Mesh( planeGeometry, planeMaterial );
 plane.rotation.x = Math.PI / 2;
