@@ -18,11 +18,12 @@ controls.dampingFactor = 0.05;
 
 
 
-const geometry = new THREE.BoxGeometry( 3, 0.3, 3 );
-//assign cube wood texture
+const wall = new THREE.BoxGeometry( 3, 0.3, 3);
+
+const material = new THREE.MeshBasicMaterial( { color: 0x941406 } );
 const texture = new THREE.TextureLoader().load( '/assets/concrete.jpg' );
-const material = new THREE.MeshBasicMaterial( { map: texture } );
-const cube = new THREE.Mesh( geometry, material );
+material.map = texture;
+const cube = new THREE.Mesh( wall, material );
 scene.add( cube );
 
 //add grass
