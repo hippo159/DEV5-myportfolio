@@ -17,16 +17,52 @@ controls.enableDamping = true;
 controls.dampingFactor = 0.05;
 
 
+//add red bottom wall
+const bottomWall = new THREE.BoxGeometry( 3, 0.3, 3);
+const material1 = new THREE.MeshBasicMaterial( { color: 0x941406 } );
+const redConcrete = new THREE.TextureLoader().load( '/assets/concrete.jpg' );
+material1.map = redConcrete;
+const cubeRed = new THREE.Mesh( bottomWall, material1 );
+scene.add( cubeRed );
 
-const wall = new THREE.BoxGeometry( 3, 0.3, 3);
-
-const material = new THREE.MeshBasicMaterial( { color: 0x941406 } );
+//add main structure
+const wall = new THREE.BoxGeometry( 2.5, 1.5, 2.5);
+//lower opacity
+const material = new THREE.MeshBasicMaterial( { color: 0xc9b7a7 } );
 const texture = new THREE.TextureLoader().load( '/assets/concrete.jpg' );
 material.map = texture;
 const cube = new THREE.Mesh( wall, material );
+cube.position.y = 0.8;
 scene.add( cube );
 
-//add grass
+//add extrude Geometry
+const shape = new THREE.Shape();
+const length = 0.1, width = 0.2;
+shape.moveTo( 0,0 );
+shape.lineTo( 0, width );
+shape.lineTo( length, width );
+shape.lineTo( length, 0 );
+shape.lineTo( 0, 0 );
+
+const extrudeSettings = {
+  steps: 1,
+  depth: 1,
+  bevelEnabled: true,
+  bevelThickness: 0.5,
+  bevelSize: 0.1,
+  bevelOffset: 0.1,
+  bevelSegments: 2
+};
+
+const roof = new THREE.ExtrudeGeometry( shape, extrudeSettings );
+const tiles = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+const mesh = new THREE.Mesh( roof, tiles ) ;
+mesh.position.y = 1.5;
+scene.add( mesh );
+
+
+
+//add floor
 const grass = new THREE.TextureLoader().load( '/assets/pavement.jpg' );
 grass.wrapS = THREE.RepeatWrapping;
 grass.wrapT = THREE.RepeatWrapping;
