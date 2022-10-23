@@ -35,6 +35,28 @@ const cube = new THREE.Mesh( wall, material );
 cube.position.y = 0.8;
 scene.add( cube );
 
+//add cone roof
+const cone = new THREE.ConeGeometry( 2.4, 0.4, 8 );
+const material2 = new THREE.MeshBasicMaterial( {color: 0x941406} );
+const cone1 = new THREE.Mesh( cone, material2 );
+cone1.position.y = 1.95;
+scene.add( cone1 );
+//add cylinder under cone
+const cylinder = new THREE.CylinderGeometry( 2.4, 2.4, 0.2, 8 );
+const material3 = new THREE.MeshBasicMaterial( {color: 0xebe2c5} );
+const cylinder1 = new THREE.Mesh( cylinder, material3 );
+cylinder1.position.y = 1.65;
+scene.add( cylinder1 );
+//add textures
+const clay = new THREE.TextureLoader().load( '/assets/clay.jpg' );
+clay.wrapS = THREE.RepeatWrapping;
+clay.wrapT = THREE.RepeatWrapping;
+clay.repeat.set( 14, 14 );
+material2.map = texture;
+material3.map = texture;
+
+
+
 
 //add floor
 const grass = new THREE.TextureLoader().load( '/assets/pavement.jpg' );
