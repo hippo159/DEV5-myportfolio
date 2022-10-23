@@ -45,6 +45,12 @@ cube.position.y = 0.8;
 scene.add( cube );
 
 //add glass window
+const glass = new THREE.BoxGeometry( 2.7, 1.1, 0.1);
+const materialGlass = new THREE.MeshBasicMaterial( { color: 0x000000 } );
+const glassWindow = new THREE.Mesh( glass);
+glassWindow.position.z = 1.4;
+glassWindow.position.y = 0.9;
+scene.add( glassWindow );
 
 //add cone roof
 const cone = new THREE.ConeGeometry( 2.4, 0.4, 8 );
