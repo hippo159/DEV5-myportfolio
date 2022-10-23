@@ -20,10 +20,19 @@ controls.dampingFactor = 0.05;
 //add red bottom wall
 const bottomWall = new THREE.BoxGeometry( 2.9, 0.5, 2.9);
 const material1 = new THREE.MeshBasicMaterial( { color: 0x941406 } );
-const redConcrete = new THREE.TextureLoader().load( '/assets/concrete.jpg' );
-material1.map = redConcrete;
+const concrete = new THREE.TextureLoader().load( '/assets/concrete.jpg' );
+material1.map = concrete;
 const cubeRed = new THREE.Mesh( bottomWall, material1 );
 scene.add( cubeRed );
+
+//add curb
+const curb = new THREE.BoxGeometry( 6, 0.1, 6);
+const materialCurb = new THREE.MeshBasicMaterial( { color: 0x7d7d7d } );
+const redConcrete = new THREE.TextureLoader().load( '/assets/concrete.jpg' );
+materialCurb.map = redConcrete;
+const curbStone = new THREE.Mesh( curb, materialCurb );
+curbStone.position.y = -0.12;
+scene.add( curbStone );
 
 //add main structure
 const wall = new THREE.BoxGeometry( 2.8, 1.5, 2.8);
@@ -34,6 +43,8 @@ material.map = texture;
 const cube = new THREE.Mesh( wall, material );
 cube.position.y = 0.8;
 scene.add( cube );
+
+//add glass window
 
 //add cone roof
 const cone = new THREE.ConeGeometry( 2.4, 0.4, 8 );
