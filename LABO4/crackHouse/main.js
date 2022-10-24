@@ -191,6 +191,28 @@ support2.position.z = 0.5;
 scene.add( support1 );
 scene.add( support2 );
 
+//add 10 people from gltf
+const people = new GLTFLoader();
+people.load(
+  // resource URL
+  '/assets/person/scene.gltf',
+  // called when the resource is loaded
+  function ( gltf ) {
+    gltf.scene.scale.set(0.5, 0.5, 0.5);
+    gltf.scene.position.set(0, -1.5, 0);
+    gltf.scene.rotation.set(0, Math.PI*1.5, 0);
+    scene.add( gltf.scene );
+  },
+  // called while loading is progressing
+  function ( xhr ) {
+    console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+  },
+  // called when loading has errors
+  function ( error ) {
+    console.log( 'An error happened' );
+  }
+);
+
 
 //add floor
 const grass = new THREE.TextureLoader().load( '/assets/pavement.jpg' );
