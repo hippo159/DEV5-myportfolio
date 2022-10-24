@@ -24,7 +24,7 @@ controls.dampingFactor = 0.05;
 
 //create env map
 new RGBELoader()
-            .load('/assets/CHINATOWN_1.exr', function (texture){
+            .load('/assets/CHINATOWN_1.hdr', function (texture){
 
                 texture.mapping = THREE.EquirectangularReflectionMapping;    
                 //var envMap = pmremGenerator.fromEquirectangular(texture).texture;
