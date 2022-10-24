@@ -174,8 +174,9 @@ scene.add( plane );
 
 //add red spotlight
 const spotLight = new THREE.SpotLight( 0xff0000 );
-spotLight.position.set( 2, 3, 0 );
+spotLight.position.set( 3, 2,3 );
 spotLight.angle = Math.PI / 3;
+spotLight.intensity = 2;
 spotLight.penumbra = 0.05;
 spotLight.decay = 2;
 spotLight.distance = 200;
@@ -187,8 +188,9 @@ spotLight.shadow.camera.far = 200;
 scene.add( spotLight );
 
 const spotLight1 = new THREE.SpotLight( 0x0000ff );
-spotLight1.position.set( 0, 3, 2 );
-spotLight1.angle = Math.PI / 1;
+spotLight1.position.set( -3, 3, 3);
+spotLight1.angle = Math.PI / -3;
+spotLight1.intensity = 2;
 spotLight1.penumbra = 0.05;
 spotLight1.decay = 2;
 spotLight1.distance = 200;
@@ -197,12 +199,12 @@ spotLight1.shadow.mapSize.width = 1024;
 spotLight1.shadow.mapSize.height = 1024;
 spotLight1.shadow.camera.near = 10;
 spotLight1.shadow.camera.far = 200;
+//add spotlight helper
+const helper = new THREE.SpotLightHelper( spotLight1);
+scene.add( helper );
 scene.add( spotLight1 );
 
-//add moonlight
-const moonLight = new THREE.PointLight( 0xffffff, 0.5 );
-moonLight.position.set( 1, 4, 0 );
-scene.add( moonLight );
+
 
 camera.position.z = 5;
 
