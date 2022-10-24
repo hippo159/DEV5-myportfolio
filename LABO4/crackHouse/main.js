@@ -3,6 +3,9 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 //import pointlight
 import { PointLight } from 'three';
+//import gltf loader
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -83,6 +86,17 @@ pillar4.position.y = -0.1;
 pillar4.position.x = -1.4;
 cube.add( pillar4 );
 
+//add wooden door
+const door = new THREE.BoxGeometry( 0.2, 1.2, 0.8);
+const materialDoor = new THREE.MeshBasicMaterial( { color: 0xffffff } );
+const wood = new THREE.TextureLoader().load( '/assets/door.png' );
+materialDoor.map = wood;
+const door1 = new THREE.Mesh( door, materialDoor );
+door1.position.z = 1.36;
+door1.position.y = -0.3;
+//rotate 90 degrees
+door1.rotation.y = Math.PI / 2;
+cube.add( door1 );
 
 
 
