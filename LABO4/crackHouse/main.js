@@ -31,9 +31,11 @@ new RGBELoader()
                 scene.enviroment = texture;             
             });
 
+
+
 //add red bottom wall
 const bottomWall = new THREE.BoxGeometry( 2.9, 0.5, 2.9);
-const material1 = new THREE.MeshBasicMaterial( { color: 0x263899 } );
+const material1 = new THREE.MeshLambertMaterial( { color: 0x263899 } );
 const concrete = new THREE.TextureLoader().load( '/assets/concrete.jpg' );
 material1.map = concrete;
 const cubeRed = new THREE.Mesh( bottomWall, material1 );
@@ -41,7 +43,7 @@ scene.add( cubeRed );
 
 //add curb
 const curb = new THREE.BoxGeometry( 6, 0.1, 6);
-const materialCurb = new THREE.MeshBasicMaterial( { color: 0x7d7d7d } );
+const materialCurb = new THREE.MeshLambertMaterial( { color: 0x7d7d7d } );
 const redConcrete = new THREE.TextureLoader().load( '/assets/concrete.jpg' );
 materialCurb.map = redConcrete;
 const curbStone = new THREE.Mesh( curb, materialCurb );
@@ -51,7 +53,7 @@ scene.add( curbStone );
 //add main structure
 const wall = new THREE.BoxGeometry( 2.8, 1.5, 2.8);
 //lower opacity
-const material = new THREE.MeshBasicMaterial( { color: 0xc9b7a7 } );
+const material = new THREE.MeshLambertMaterial( { color: 0xc9b7a7 } );
 const texture = new THREE.TextureLoader().load( '/assets/concrete.jpg' );
 material.map = texture;
 const cube = new THREE.Mesh( wall, material );
@@ -60,7 +62,7 @@ scene.add( cube );
 
 //add glass window
 const glass = new THREE.BoxGeometry( 2.85, 1.1, 2.85);
-const materialGlass = new THREE.MeshBasicMaterial( { color: 0xbd9182 } );
+const materialGlass = new THREE.MeshLambertMaterial( { color: 0xbd9182 } );
 const shopFace = new THREE.TextureLoader().load( '/assets/shop.jpg' );
 materialGlass.map = shopFace;
 const glassWindow = new THREE.Mesh( glass , materialGlass);
@@ -71,7 +73,7 @@ scene.add( glassWindow );
 //add 4 corner pillars
 const clay = new THREE.TextureLoader().load( '/assets/clay.jpg' );
 const pillar = new THREE.BoxGeometry( 0.2, 1.7, 0.2);
-const materialPillar = new THREE.MeshBasicMaterial( { color: 0x46484a } );
+const materialPillar = new THREE.MeshLambertMaterial( { color: 0x46484a } );
 materialPillar.map = clay;
 const pillar1 = new THREE.Mesh( pillar, materialPillar );
 pillar1.position.x = 1.4;
@@ -99,7 +101,7 @@ cube.add( pillar4 );
 
 //add wooden door
 const door = new THREE.BoxGeometry( 0.2, 1.2, 0.8);
-const materialDoor = new THREE.MeshBasicMaterial( { color: 0xffffff } );
+const materialDoor = new THREE.MeshLambertMaterial( { color: 0xffffff } );
 const wood = new THREE.TextureLoader().load( '/assets/door.png' );
 materialDoor.map = wood;
 const door1 = new THREE.Mesh( door, materialDoor );
@@ -136,13 +138,13 @@ loader.load(
 
 //add cone roof
 const cone = new THREE.ConeGeometry( 2.4, 0.4, 8 );
-const material2 = new THREE.MeshBasicMaterial( {color: 0x263899} );
+const material2 = new THREE.MeshLambertMaterial( {color: 0x263899} );
 const cone1 = new THREE.Mesh( cone, material2 );
 cone1.position.y = 1.95;
 scene.add( cone1 );
 //add cylinder under cone
 const cylinder = new THREE.CylinderGeometry( 2.4, 2.4, 0.2, 8 );
-const material3 = new THREE.MeshBasicMaterial( {color: 0xebe2c5} );
+const material3 = new THREE.MeshLambertMaterial( {color: 0xebe2c5} );
 const cylinder1 = new THREE.Mesh( cylinder, material3 );
 cylinder1.position.y = 1.65;
 scene.add( cylinder1 );
@@ -164,21 +166,46 @@ grass.wrapT = THREE.RepeatWrapping;
 grass.repeat.set( 12, 12 );
 //add floor plane
 const planeGeometry = new THREE.CircleGeometry( 10, 16);
-const planeMaterial = new THREE.MeshBasicMaterial( { map: grass, side: THREE.DoubleSide } );
+const planeMaterial = new THREE.MeshLambertMaterial( { map: grass, side: THREE.DoubleSide } );
 const plane = new THREE.Mesh( planeGeometry, planeMaterial );
 plane.rotation.x = Math.PI / 2;
 plane.position.y = -0.15;
 scene.add( plane );
 
+//add red spotlight
+const spotLight = new THREE.SpotLight( 0xff0000 );
+spotLight.position.set( 2, 3, 0 );
+spotLight.angle = Math.PI / 3;
+spotLight.penumbra = 0.05;
+spotLight.decay = 2;
+spotLight.distance = 200;
+spotLight.castShadow = true;
+spotLight.shadow.mapSize.width = 1024;
+spotLight.shadow.mapSize.height = 1024;
+spotLight.shadow.camera.near = 10;
+spotLight.shadow.camera.far = 200;
+scene.add( spotLight );
+
+const spotLight1 = new THREE.SpotLight( 0x0000ff );
+spotLight1.position.set( 0, 3, 2 );
+spotLight1.angle = Math.PI / 1;
+spotLight1.penumbra = 0.05;
+spotLight1.decay = 2;
+spotLight1.distance = 200;
+spotLight1.castShadow = true;
+spotLight1.shadow.mapSize.width = 1024;
+spotLight1.shadow.mapSize.height = 1024;
+spotLight1.shadow.camera.near = 10;
+spotLight1.shadow.camera.far = 200;
+scene.add( spotLight1 );
+
+//add moonlight
+const moonLight = new THREE.PointLight( 0xffffff, 0.5 );
+moonLight.position.set( 1, 4, 0 );
+scene.add( moonLight );
 
 camera.position.z = 5;
-// add point light
-const pointLight = new PointLight(0xffffff, 1);
-pointLight.position.set(0, 8, 0);
-scene.add(pointLight);
-//add light helper
-const lightHelper = new THREE.PointLightHelper(pointLight, 1);
-scene.add(lightHelper);
+
 
 function animate() {
   requestAnimationFrame( animate );
