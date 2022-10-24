@@ -22,7 +22,7 @@ controls.dampingFactor = 0.05;
 
 //add red bottom wall
 const bottomWall = new THREE.BoxGeometry( 2.9, 0.5, 2.9);
-const material1 = new THREE.MeshBasicMaterial( { color: 0x941406 } );
+const material1 = new THREE.MeshBasicMaterial( { color: 0x263899 } );
 const concrete = new THREE.TextureLoader().load( '/assets/concrete.jpg' );
 material1.map = concrete;
 const cubeRed = new THREE.Mesh( bottomWall, material1 );
@@ -98,11 +98,34 @@ door1.position.y = -0.3;
 door1.rotation.y = Math.PI / 2;
 cube.add( door1 );
 
+//import cash gltf
+const loader = new GLTFLoader();
+loader.load(
+  // resource URL
+  '/assets/cash.gltf',
+  // called when the resource is loaded
+  function ( gltf ) {
+    gltf.scene.scale.set(1, 1, 1);
+    gltf.scene.position.set(1.56, -1.55, 1.36);
+    gltf.scene.rotation.set(0, Math.PI / 2, 0);
+    cube.add( gltf.scene );
+  },
+  // called while loading is progressing
+  function ( xhr ) {
+    console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+  },
+  // called when loading has errors
+  function ( error ) {
+    console.log( 'An error happened' );
+  }
+);
+
+
 
 
 //add cone roof
 const cone = new THREE.ConeGeometry( 2.4, 0.4, 8 );
-const material2 = new THREE.MeshBasicMaterial( {color: 0x941406} );
+const material2 = new THREE.MeshBasicMaterial( {color: 0x263899} );
 const cone1 = new THREE.Mesh( cone, material2 );
 cone1.position.y = 1.95;
 scene.add( cone1 );
