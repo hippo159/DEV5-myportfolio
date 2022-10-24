@@ -156,7 +156,40 @@ clay.repeat.set( 14, 14 );
 material2.map = texture;
 material3.map = texture;
 
-
+//load bignut glb
+const donut = new GLTFLoader();
+donut.load(
+  // resource URL
+  '/assets/bignut.glb',
+  // called when the resource is loaded
+  function ( gltf ) {
+    gltf.scene.scale.set(25, 25, 25);
+    gltf.scene.position.set(0, 3.2, 0.5);
+    gltf.scene.rotation.set(0, Math.PI*1.5, 0);
+    scene.add( gltf.scene );
+  },
+  // called while loading is progressing
+  function ( xhr ) {
+    console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+  },
+  // called when loading has errors
+  function ( error ) {
+    console.log( 'An error happened' );
+  }
+);
+//add support for donut
+const support = new THREE.CylinderGeometry( 0.06, 0.06, 2, 8 );
+const material4 = new THREE.MeshLambertMaterial( {color: 0x000000} );
+const support1 = new THREE.Mesh( support, material4 );
+support1.position.y = 2;
+support1.position.x = 0.5;
+support1.position.z = 0.5;
+const support2 = new THREE.Mesh( support, material4 );
+support2.position.y = 2;
+support2.position.x = -0.5;
+support2.position.z = 0.5;
+scene.add( support1 );
+scene.add( support2 );
 
 
 //add floor
