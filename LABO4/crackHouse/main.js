@@ -176,7 +176,7 @@ scene.add( plane );
 const spotLight = new THREE.SpotLight( 0xff0000 );
 spotLight.position.set( 3, 2,3 );
 spotLight.angle = Math.PI / 3;
-spotLight.intensity = 2;
+spotLight.intensity = 0.5;
 spotLight.penumbra = 0.05;
 spotLight.decay = 2;
 spotLight.distance = 200;
@@ -190,7 +190,7 @@ scene.add( spotLight );
 const spotLight1 = new THREE.SpotLight( 0x0000ff );
 spotLight1.position.set( -3, 3, 3);
 spotLight1.angle = Math.PI / -3;
-spotLight1.intensity = 2;
+spotLight1.intensity = 0.5;
 spotLight1.penumbra = 0.05;
 spotLight1.decay = 2;
 spotLight1.distance = 200;
@@ -199,12 +199,53 @@ spotLight1.shadow.mapSize.width = 1024;
 spotLight1.shadow.mapSize.height = 1024;
 spotLight1.shadow.camera.near = 10;
 spotLight1.shadow.camera.far = 200;
-//add spotlight helper
-const helper = new THREE.SpotLightHelper( spotLight1);
-scene.add( helper );
 scene.add( spotLight1 );
 
+//add new pointlight
+const pointLight = new THREE.PointLight( 0xffffff, 1, 100 );
+pointLight.position.set( 0, 4, 0 );
+pointLight.intensity = 0.5;
+scene.add( pointLight );
 
+//adds streetlight gltf
+const loader1 = new GLTFLoader();
+loader1.load(
+  // resource URL
+  '/assets/street_light/scene.gltf',
+  // called when the resource is loaded
+  function ( gltf ) {
+    gltf.scene.scale.set(0.8, 0.8, 0.8);
+    gltf.scene.position.set(2.6, -0.5, -2.6);
+    gltf.scene.rotation.set(0, Math.PI/-4, 0);
+    scene.add( gltf.scene );
+  },
+  // called while loading is progressing
+  function ( xhr ) {
+    console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+  },
+  // called when loading has errors
+  function ( error ) {
+    console.log( 'An error happened' );
+  }
+);
+
+const lantern = new THREE.SpotLight( 0xe8a710 );
+lantern.position.set( 2.5, 4.5, -2.5);
+//focus lantern on cube
+lantern.target = cube;
+lantern.intensity = 2;
+lantern.penumbra = 0.08;
+lantern.decay = 5;
+
+//reduce spotlight size
+
+lantern.distance = 50;
+lantern.castShadow = true;
+lantern.shadow.mapSize.width = 128;
+lantern.shadow.mapSize.height = 128;
+lantern.shadow.camera.near = 10;
+lantern.shadow.camera.far = 50;
+scene.add( lantern );
 
 camera.position.z = 5;
 
@@ -212,6 +253,12 @@ camera.position.z = 5;
 function animate() {
   requestAnimationFrame( animate );
 
+
+  //delay 
+  setTimeout(function(){ lantern.intensity  = lantern.intensity + 0.2; }, 5000);
+  if (lantern.intensity  >  2) {
+    lantern.intensity  =  0.5;
+  }
 
 
   renderer.render( scene, camera );
