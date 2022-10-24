@@ -24,19 +24,11 @@ controls.dampingFactor = 0.05;
 
 //create env map
 new RGBELoader()
-            .load('/assets/CHINATOWN_1.hdr', function (texture){
+            .load('/assets/49TH_STREET.hdr', function (texture){
 
                 texture.mapping = THREE.EquirectangularReflectionMapping;    
-                //var envMap = pmremGenerator.fromEquirectangular(texture).texture;
                 scene.background = texture;
-                scene.enviroment = texture;
-
-                /*texture.dispose();
-                pmremGenerator.dispose();*/
-
-                render();
-
-                
+                scene.enviroment = texture;             
             });
 
 //add red bottom wall
