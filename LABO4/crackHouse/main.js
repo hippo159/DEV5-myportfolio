@@ -45,12 +45,46 @@ cube.position.y = 0.8;
 scene.add( cube );
 
 //add glass window
-const glass = new THREE.BoxGeometry( 2.7, 1.1, 0.1);
-const materialGlass = new THREE.MeshBasicMaterial( { color: 0x000000 } );
-const glassWindow = new THREE.Mesh( glass);
-glassWindow.position.z = 1.4;
+const glass = new THREE.BoxGeometry( 2.85, 1.1, 2.85);
+const materialGlass = new THREE.MeshBasicMaterial( { color: 0xbd9182 } );
+const shopFace = new THREE.TextureLoader().load( '/assets/shop.jpg' );
+materialGlass.map = shopFace;
+const glassWindow = new THREE.Mesh( glass , materialGlass);
+glassWindow.position.z = 0;
 glassWindow.position.y = 0.9;
 scene.add( glassWindow );
+
+//add 4 corner pillars
+const clay = new THREE.TextureLoader().load( '/assets/clay.jpg' );
+const pillar = new THREE.BoxGeometry( 0.2, 1.7, 0.2);
+const materialPillar = new THREE.MeshBasicMaterial( { color: 0x46484a } );
+materialPillar.map = clay;
+const pillar1 = new THREE.Mesh( pillar, materialPillar );
+pillar1.position.x = 1.4;
+pillar1.position.y = -0.1;
+pillar1.position.z = 1.4;
+cube.add( pillar1 );
+
+const pillar2 = new THREE.Mesh( pillar, materialPillar );
+pillar2.position.x = -1.4;
+pillar2.position.y = -0.1;
+pillar2.position.z = -1.4;
+cube.add( pillar2 );
+
+const pillar3 = new THREE.Mesh( pillar, materialPillar );
+pillar3.position.x = 1.4;
+pillar3.position.y = -0.1;
+pillar3.position.z = -1.4;
+cube.add( pillar3 );
+
+const pillar4 = new THREE.Mesh( pillar, materialPillar );
+pillar4.position.z = 1.4;
+pillar4.position.y = -0.1;
+pillar4.position.x = -1.4;
+cube.add( pillar4 );
+
+
+
 
 //add cone roof
 const cone = new THREE.ConeGeometry( 2.4, 0.4, 8 );
@@ -65,7 +99,7 @@ const cylinder1 = new THREE.Mesh( cylinder, material3 );
 cylinder1.position.y = 1.65;
 scene.add( cylinder1 );
 //add textures
-const clay = new THREE.TextureLoader().load( '/assets/clay.jpg' );
+
 clay.wrapS = THREE.RepeatWrapping;
 clay.wrapT = THREE.RepeatWrapping;
 clay.repeat.set( 14, 14 );
