@@ -5,6 +5,9 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { PointLight } from 'three';
 //import gltf loader
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+//import rgbe loader
+import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js'
+
 
 
 const scene = new THREE.Scene();
@@ -19,6 +22,22 @@ const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.dampingFactor = 0.05;
 
+//create env map
+new RGBELoader()
+            .load('/assets/CHINATOWN_1.exr', function (texture){
+
+                texture.mapping = THREE.EquirectangularReflectionMapping;    
+                //var envMap = pmremGenerator.fromEquirectangular(texture).texture;
+                scene.background = texture;
+                scene.enviroment = texture;
+
+                /*texture.dispose();
+                pmremGenerator.dispose();*/
+
+                render();
+
+                
+            });
 
 //add red bottom wall
 const bottomWall = new THREE.BoxGeometry( 2.9, 0.5, 2.9);
