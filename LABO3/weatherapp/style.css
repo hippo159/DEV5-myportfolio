@@ -3,6 +3,8 @@
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
+  /* add black outline to font*/
+  text-shadow: 0 0 5px #000;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -14,4 +16,17 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
-
+/* align all items to centre of page */
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+#app {
+  width: 30%;
+  background-image: url('./src/chucknorris.jpeg');
+  padding: 50px;
+}
