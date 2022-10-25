@@ -39,6 +39,7 @@ export default class Weather {
             localStorage.setItem('timestamp', Date.now());
             //print nu data
             this.displayWeather(data);});
+
     }
     displayWeather(data){
         const temp = data.current.temp_c;
