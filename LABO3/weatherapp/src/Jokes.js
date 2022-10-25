@@ -1,10 +1,11 @@
 import Weather from '../src/Weather.js';
 export default class Jokes {
-    constructor() {
-        this.getJoke();
+    constructor(subject) {
+        this.getJoke(subject);
     }
-    getJoke() {
-        fetch('https://api.chucknorris.io/jokes/random')
+    getJoke(subject) {
+        
+        fetch(`https://api.chucknorris.io/jokes/search?query=${subject}`)
         .then(response => response.json())
         .then(data => {
             console.log(data);
