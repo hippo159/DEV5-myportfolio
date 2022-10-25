@@ -200,7 +200,7 @@ people.load(
   // called when the resource is loaded
   function ( gltf ) {
     gltf.scene.scale.set(0.004, 0.004, 0.004);
-    gltf.scene.position.set(x, 0, z);
+    gltf.scene.position.set(x, -0.1, z);
     gltf.scene.rotation.set(0, Math.PI*r, 0);
     scene.add( gltf.scene );
   },
