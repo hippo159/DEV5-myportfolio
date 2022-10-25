@@ -192,15 +192,16 @@ scene.add( support1 );
 scene.add( support2 );
 
 //add 10 people from gltf
+const addPeople = (x,z,r) => {
 const people = new GLTFLoader();
 people.load(
   // resource URL
   '/assets/person/scene.gltf',
   // called when the resource is loaded
   function ( gltf ) {
-    gltf.scene.scale.set(0.5, 0.5, 0.5);
-    gltf.scene.position.set(0, -1.5, 0);
-    gltf.scene.rotation.set(0, Math.PI*1.5, 0);
+    gltf.scene.scale.set(0.004, 0.004, 0.004);
+    gltf.scene.position.set(x, 0, z);
+    gltf.scene.rotation.set(0, Math.PI*r, 0);
     scene.add( gltf.scene );
   },
   // called while loading is progressing
@@ -212,7 +213,19 @@ people.load(
     console.log( 'An error happened' );
   }
 );
+};
 
+for(let i = 0; i < 30; i++){
+  //random sign
+  let sign = Math.random() < 0.5 ? -1 : 1;
+  let x = Math.random() * 8 * sign;
+  sign = Math.random() < 0.5 ? -1 : 1;
+  let z = Math.random() * 8 * sign;
+  sign = Math.random() < 0.5 ? -1 : 1;
+  let r = Math.random() * 8 * sign;
+  addPeople(x,z,r);
+
+  };
 
 //add floor
 const grass = new THREE.TextureLoader().load( '/assets/pavement.jpg' );
