@@ -30,10 +30,13 @@ import {ref,onMounted} from 'vue'
 <style lang="scss" scoped>
 .comments{
     .comment{
-        display: flex;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
     flex-direction: row;
     align-items: center;
-    padding-top: 20px;
+    padding: 20px;
+    
     p{
             margin: 0;
     }
