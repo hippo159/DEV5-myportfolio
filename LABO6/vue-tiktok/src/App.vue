@@ -19,7 +19,7 @@
 .app{
   display: grid;
   grid-template-columns: 8fr 4fr;
-  grid-template-rows: 100px 1fr;
+  grid-template-rows: 200px 1fr;
   grid-template-areas: 
   "video description"
   "video comments";
@@ -31,6 +31,7 @@
   }
   .comments{
     grid-area: comments;
+    background-color: aliceblue;
   }
 }
 </style>
