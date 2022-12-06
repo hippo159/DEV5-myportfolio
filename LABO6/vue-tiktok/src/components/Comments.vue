@@ -1,16 +1,15 @@
 <script setup>
 import {ref,onMounted,reactive} from 'vue'
-  let comments = reactive({comments: []});
-  let username = ref("test");
-  let comment = ref("test");
+  let state = reactive({comments: []});
+  
+  
   onMounted(() => {
-    const apiUrl = "https://app.fakejson.com/q/lBPXdBGN?token=g5frKzilW_Od5FAeboQuow"
+    const apiUrl = "https://lab5-p379.onrender.com/api/v1/messages/"
     fetch(apiUrl)
     .then(res => res.json())
     .then(data => {
-      comments.data = data.comments[0];
-      username.value = data.comments[0].username
-      comment.value = data.comments[0].comment
+      state.comments = data;
+      console.log(state);
      
     
     });
@@ -19,11 +18,11 @@ import {ref,onMounted,reactive} from 'vue'
 
 <template>
   <div class="comments">
-    <div class="comment" v-for="comment in comments" :key = comment>
+    <div class="comment" v-for="comment in state.comments" :key="comment.id">
     <img class="img" src="../assets/profile.gif" alt="profile">
     <div class ="user">
-        <h4>{{username}}</h4>
-        <p>{{comment}}</p>
+        <h4>{{comment.user}}</h4>
+        <p>{{comment.text}}</p>
     </div>
 </div>
   </div>
