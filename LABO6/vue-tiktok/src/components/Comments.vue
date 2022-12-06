@@ -9,7 +9,7 @@ import {ref,onMounted,reactive} from 'vue'
     .then(res => res.json())
     .then(data => {
       state.comments = data;
-      console.log(state); 
+      
     });
  });
  const addComment = () => {
@@ -21,7 +21,7 @@ import {ref,onMounted,reactive} from 'vue'
             "text": comment
         }
     ;
-    console.log()
+    state.comments.push(comments);
     //post comment to api
     fetch("https://lab5-p379.onrender.com/api/v1/messages/", {
         method: 'POST',
