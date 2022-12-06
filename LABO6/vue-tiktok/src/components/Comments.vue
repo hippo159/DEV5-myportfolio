@@ -13,8 +13,20 @@ import {ref,onMounted,reactive} from 'vue'
     });
  });
  const addComment = () => {
-    //
-     state.comments.push(title.value)
+    const username = document.querySelector('#username').value;
+    const comment = document.querySelector('#comment').value;
+    const comments = 
+        {
+            "user": username,
+            "text": comment
+        }
+    ;
+    console.log()
+    //post comment to api
+    
+
+     
+    state.comments.push(comments)
  }
 </script>
 
@@ -31,8 +43,8 @@ import {ref,onMounted,reactive} from 'vue'
   </div>
   <span class="post">
   <div class="input">
-  <input type="text" id="username" class="placeComment" placeholder="Username">
-  <input type="text" id="comment" class="placeComment" placeholder="comment">
+  <input type="text" id="username" class="placeComment" placeholder="Username" required>
+  <input type="text" id="comment" class="placeComment" placeholder="comment" required>
   </div>
   <a href="#" @click.prevent="addComment" class="send">➡️</a>
 </span>
