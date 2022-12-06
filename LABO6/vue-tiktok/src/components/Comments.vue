@@ -9,11 +9,13 @@ import {ref,onMounted,reactive} from 'vue'
     .then(res => res.json())
     .then(data => {
       state.comments = data;
-      console.log(state);
-     
-    
+      console.log(state); 
     });
  });
+ const addComment = () => {
+    //
+     state.comments.push(title.value)
+ }
 </script>
 
 <template>
@@ -28,8 +30,11 @@ import {ref,onMounted,reactive} from 'vue'
 </div>
   </div>
   <span class="post">
-  <input type="text" class="placeComment" placeholder="comment">
-  <a href="#" @click="addComment" class="send">➡️</a>
+  <div class="input">
+  <input type="text" id="username" class="placeComment" placeholder="Username">
+  <input type="text" id="comment" class="placeComment" placeholder="comment">
+  </div>
+  <a href="#" @click.prevent="addComment" class="send">➡️</a>
 </span>
 </div>
 </template>
