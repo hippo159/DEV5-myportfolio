@@ -12,6 +12,7 @@ export default class Jokes {
             const random = Math.floor(Math.random() * data.result.length);
             const joke = data.result[random].value;
             document.querySelector(".joke__text").innerText = joke;
+            document.querySelector(".addRead").innerText = "Even in " + subject + " You can still smell like Chuck Norris";
             console.log(joke);
         });
     }
