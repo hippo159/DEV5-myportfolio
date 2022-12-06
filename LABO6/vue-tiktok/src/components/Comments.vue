@@ -17,6 +17,7 @@ import {ref,onMounted,reactive} from 'vue'
 </script>
 
 <template>
+  <div>
   <div class="comments">
     <div class="comment" v-for="comment in state.comments" :key="comment.id">
     <img class="img" src="../assets/profile.gif" alt="profile">
@@ -26,9 +27,35 @@ import {ref,onMounted,reactive} from 'vue'
     </div>
 </div>
   </div>
+  <span class="post">
+  <input type="text" class="placeComment" placeholder="comment">
+  <a href="#" @click="addComment" class="send">➡️</a>
+</span>
+</div>
 </template>
 
 <style lang="scss" scoped>
+.post{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+.send{
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+.placeComment{
+    width: 80%;
+    height: 1em;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    margin-top: 10px;
+}
 .comments{
   max-height: 500px;
   overflow:scroll;
