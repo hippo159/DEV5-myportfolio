@@ -30,6 +30,8 @@ import {ref,onMounted,reactive} from 'vue'
 
 <style lang="scss" scoped>
 .comments{
+  max-height: 500px;
+  overflow:scroll;
     .comment{
     background-color: white;
     border-radius: 10px;
@@ -37,6 +39,7 @@ import {ref,onMounted,reactive} from 'vue'
     flex-direction: row;
     align-items: center;
     padding: 20px;
+    margin-bottom: 10px;
     
     p{
             margin: 0;
