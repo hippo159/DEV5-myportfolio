@@ -23,10 +23,16 @@ import {ref,onMounted,reactive} from 'vue'
     ;
     console.log()
     //post comment to api
-    
+    fetch("https://lab5-p379.onrender.com/api/v1/messages/", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(comments),
+    })
 
      
-    state.comments.push(comments)
+    
  }
 </script>
 
