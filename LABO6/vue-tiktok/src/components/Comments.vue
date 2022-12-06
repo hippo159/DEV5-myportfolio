@@ -1,5 +1,7 @@
 <script setup>
-import {ref,onMounted} from 'vue'
+import {ref,onMounted,reactive} from 'vue'
+  let comments = reactive({data: []});
+
   let username = ref("test");
   let comment = ref("test");
   onMounted(() => {
